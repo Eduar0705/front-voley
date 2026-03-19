@@ -1,0 +1,116 @@
+.tabla-page {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.table-container {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.standings-table {
+  width: 100%;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px 60px 100px;
+  background: #ff3131; /* Rojo potente como el de la imagen */
+  color: white;
+  font-weight: 800;
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px 60px 100px;
+  padding: 1rem 1.5rem;
+  align-items: center;
+  border-bottom: 1px solid var(--glass-border);
+  transition: var(--transition);
+  color: #cbd5e1;
+}
+
+.table-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.01);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+}
+
+.col.pos {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.col.equipo {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.team-mini-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: white;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.col.val {
+  justify-content: center;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+.col.pts {
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .table-header, .table-row {
+    grid-template-columns: 50px 1fr 40px 40px 60px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .team-cell {
+    gap: 0.75rem;
+  }
+  
+  .team-mini-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .col.val {
+    font-size: 0.9rem;
+  }
+}
