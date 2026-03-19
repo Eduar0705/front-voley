@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const API_URL = "https://backvoley.up.railway.app/api";
+
 const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json'
     }
