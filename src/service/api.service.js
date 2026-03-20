@@ -1,12 +1,11 @@
 import axios from 'axios';
 
 const API_URL = "https://backvoley.up.railway.app/api";
+//const API_URL = "http://localhost:3000/api";
+
 
 const api = axios.create({
-    baseURL: API_URL,
-    headers: {
-        'Content-Type': 'application/json'
-    }
+    baseURL: API_URL
 });
 
 // Interceptor opcional para cuando usemos tokens

@@ -1,0 +1,88 @@
+.captain-navbar {
+    height: 70px;
+    background: #0f172a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    border-bottom: 2px solid #ef4444;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+
+.brand-text span {
+    color: #ef4444;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #94a3b8;
+}
+
+.user-profile i {
+    font-size: 1.5rem;
+}
+
+.logout-btn {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .captain-navbar {
+        padding: 0 1rem;
+    }
+    .brand-text {
+        font-size: 1.2rem;
+    }
+    .user-profile span {
+        display: none;
+    }
+    .logout-btn span {
+        display: none;
+    }
+    .logout-btn {
+        padding: 0.5rem;
+    }
+}

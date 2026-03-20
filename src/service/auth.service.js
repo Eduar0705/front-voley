@@ -16,12 +16,27 @@ const logout = () => {
     localStorage.removeItem('user');
 };
 
+const updateClave = async (id, data) => {
+    try {
+        const response = await api.put(`/auth/update-clave/${id}`, data);
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Error al actualizar contraseña' };
+    }
+};
+
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem('user'));
+    try {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
+    } catch (error) {
+        return null;
+    }
 };
 
 export const authService = {
     login,
     logout,
-    getCurrentUser
+    getCurrentUser,
+    updateClave
 };

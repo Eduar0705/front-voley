@@ -24,8 +24,12 @@ export default function Registro() {
     const [errors, setErrors] = useState({});
 
     const handleCapitanChange = (e) => {
-        const { id, value } = e.target;
-        setCapitan(prev => ({ ...prev, [id]: value }));
+        const { id, value, files } = e.target;
+        if (id === 'logo') {
+            setCapitan(prev => ({ ...prev, logo: files[0] }));
+        } else {
+            setCapitan(prev => ({ ...prev, [id]: value }));
+        }
     };
 
     const handlePlayerChange = (index, field, value) => {
@@ -74,7 +78,21 @@ export default function Registro() {
         if (validateForm()) {
             setLoading(true);
             try {
-                const data = await registroService.registrarEquipo(capitan, jugadores);
+                const formData = new FormData();
+                // Serializamos los objetos como JSON strings para que Multer los reciba correctamente
+                formData.append('capitan', JSON.stringify({
+                    nombre: capitan.nombre,
+                    carrera: capitan.carrera,
+                    cedula: capitan.cedula,
+                    equipo: capitan.equipo
+                }));
+                formData.append('jugadores', JSON.stringify(jugadores));
+                
+                if (capitan.logo) {
+                    formData.append('logo', capitan.logo);
+                }
+
+                const data = await registroService.registrarEquipo(formData);
                 if (data.success) {
                     Swal.fire({
                         title: '¡Registro Exitoso!',
@@ -131,8 +149,8 @@ export default function Registro() {
                                 <div className="form-group full-width">
                                     <label>Logo del Equipo (Opcional)</label>
                                     <div className="file-input-wrapper">
-                                        <input type="file" id="logo" accept="image/*" />
-                                        <span>Seleccionar imagen...</span>
+                                        <input type="file" id="logo" accept="image/*" onChange={handleCapitanChange} />
+                                        <span>{capitan.logo ? capitan.logo.name : 'Seleccionar imagen...'}</span>
                                     </div>
                                 </div>
                             </div>
