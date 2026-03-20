@@ -1,0 +1,180 @@
+/* ============================================
+   NAVIGATION SYSTEM (SIDEBAR & BOTTOM NAV)
+   ============================================ */
+
+:root {
+    --nav-bg: rgba(15, 23, 42, 0.9);
+    --nav-border: rgba(255, 255, 255, 0.08);
+    --nav-active-bg: rgba(59, 130, 246, 0.15);
+    --nav-active-color: #3b82f6;
+    --nav-text: #94a3b8;
+    --nav-text-hover: #f1f5f9;
+}
+
+/* Desktop Sidebar */
+.navigation-sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border-right: 1px solid var(--nav-border);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--nav-border);
+}
+
+.nav-header h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.nav-content {
+    flex: 1;
+    padding: 1rem 0;
+    overflow-y: auto;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    color: var(--nav-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--nav-text-hover);
+}
+
+.nav-item.active {
+    background: var(--nav-active-bg);
+    color: var(--nav-active-color);
+    border-left-color: var(--nav-active-color);
+}
+
+.nav-item i {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.nav-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--nav-border);
+    text-align: center;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+/* ============================================
+   MOBILE BOTTOM NAVIGATION (< 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    .navigation-sidebar {
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        border-right: none;
+        border-top: 1px solid var(--nav-border);
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-header, .nav-footer {
+        display: none;
+    }
+
+    .nav-content {
+        padding: 0;
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .nav-list {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .nav-item {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        height: 100%;
+        gap: 4px;
+        border-left: none;
+        border-top: 3px solid transparent;
+        font-size: 0.7rem;
+    }
+
+    .nav-item i {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+
+    .nav-item.active {
+        border-left: none;
+        border-top-color: var(--nav-active-color);
+        background: transparent;
+    }
+
+    /* Adjust main content padding to not hide behind bottom nav */
+    .main-content {
+        margin-left: 0 !important;
+        padding-bottom: 90px !important;
+    }
+}
+
+/* Tablet adjustments (768px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .navigation-sidebar {
+        width: 80px;
+    }
+    
+    .nav-item span, .nav-header, .nav-footer p {
+        display: none;
+    }
+    
+    .nav-item {
+        justify-content: center;
+        padding: 1.5rem 0;
+    }
+
+    .main-content {
+        margin-left: 80px;
+    }
+}

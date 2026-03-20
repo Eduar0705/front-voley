@@ -9,6 +9,9 @@ import Jugadores from "./pages/jugadores";
 import Juegos from "./pages/juegos";
 import Tabla from './pages/tabla';
 
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -20,6 +23,10 @@ export default function App() {
         <Route path="/jugadores" element={<Jugadores />} />
         <Route path="/juegos" element={<Juegos />} />
         <Route path="/tabla" element={<Tabla />} />
+        
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

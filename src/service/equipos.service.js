@@ -27,8 +27,38 @@ const getEquipo = async (id) => {
     }
 };
 
+const getEquipos = async () => {
+    try {
+        const response = await api.get('/registro/equipos'); // Reusing existing registration list if available or adding new logic
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Error al obtener lista de equipos' };
+    }
+};
+
+const getStandings = async () => {
+    try {
+        const response = await api.get('/equipos/standings');
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Error al obtener tabla de posiciones' };
+    }
+};
+
+const deleteEquipo = async (id) => {
+    try {
+        const response = await api.delete(`/equipos/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Error al eliminar el equipo' };
+    }
+};
+
 export const equiposService = {
     getEquipoStats,
     getEquipo,
-    updateEquipo
+    getEquipos,
+    getStandings,
+    updateEquipo,
+    deleteEquipo
 };

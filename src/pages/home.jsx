@@ -70,11 +70,22 @@ export default function Home() {
 
     if (!user || !equipo) return <div className="loading-screen">Cargando perfil...</div>;
 
+    const captainItems = [
+        { id: 'dashboard', label: 'Dashboard', icon: 'fas fa-chart-line' },
+        { id: 'equipo', label: 'Mi Equipo', icon: 'fas fa-users' },
+        { id: 'config', label: 'Configuración', icon: 'fas fa-cog' }
+    ];
+
     return (
         <div className="home-layout">
             <Navbar />
             <div className="home-container">
-                <Asside activeTab={activeTab} setActiveTab={setActiveTab} />
+                <Asside 
+                    activeTab={activeTab} 
+                    setActiveTab={setActiveTab} 
+                    menuItems={captainItems}
+                    footerText={`Equipo: ${equipo.nombre}`}
+                />
                 <main className="main-content">
                     <div className="animate-fade">
                         {renderContent()}
@@ -121,17 +132,35 @@ function DashboardView({ stats, equipo, playersCount }) {
                 </div>
                 <div className="stat-card">
                     <div className="stat-icon mvp">
-                        <i className="fas fa-star"></i>
+                        <i className="fas fa-award"></i>
                     </div>
                     <div className="stat-info">
-                        <h3>MVP del Equipo</h3>
+                        <h3>Mejor Jugador (MVPs)</h3>
                         <div className="stat-value">
-                            {stats.mvp ? stats.mvp.nombre : 'N/A'}
+                            {stats.awards?.mvps || 0}
                         </div>
                         <div className="stat-subvalue">
-                            {stats.mvp ? `${stats.mvp.puntos} Puntos Totales` : 'Sin datos'}
+                            {stats.mvp ? `${stats.mvp.nombre} (${stats.mvp.total_mvps})` : 'Sin premios'}
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className="awards-summary-grid">
+                <div className="award-summary-card">
+                    <i className="fas fa-hands-helping"></i>
+                    <span>Armadores</span>
+                    <strong>{stats.awards?.armadores || 0}</strong>
+                </div>
+                <div className="award-summary-card">
+                    <i className="fas fa-bolt"></i>
+                    <span>Atacantes</span>
+                    <strong>{stats.awards?.atacantes || 0}</strong>
+                </div>
+                <div className="award-summary-card">
+                    <i className="fas fa-shield-alt"></i>
+                    <span>Receptores</span>
+                    <strong>{stats.awards?.receptores || 0}</strong>
                 </div>
             </div>
 

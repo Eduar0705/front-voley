@@ -1,35 +1,30 @@
 import React from 'react';
-import '../assets/Asside.css';
+import '../assets/navigation.css';
 
-export default function Asside({ activeTab, setActiveTab }) {
-    const menuItems = [
-        { id: 'dashboard', label: 'Home', icon: 'fas fa-chart-line' },
-        { id: 'equipo', label: 'Mi Equipo', icon: 'fas fa-users-cog' },
-        { id: 'config', label: 'Ajustes', icon: 'fas fa-sliders-h' }
-    ];
+export default function Asside({ activeTab, setActiveTab, menuItems, footerText = "Voley Sistems" }) {
+    if (!menuItems) return null;
 
     return (
-        <aside className="captain-sidebar">
-            <div className="sidebar-header">
-                <h3>Menú Principal</h3>
+        <aside className="navigation-sidebar">
+            <div className="nav-header">
+                <h3>Menú</h3>
             </div>
-            <nav className="sidebar-nav">
-                <ul className="sidebar-list">
-                    {menuItems.map(item => (
-                        <li 
+            <nav className="nav-content">
+                <ul className="nav-list">
+                    {menuItems.map((item) => (
+                        <li
                             key={item.id}
-                            className={`sidebar-item ${activeTab === item.id ? 'active' : ''}`}
+                            className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
                             onClick={() => setActiveTab(item.id)}
                         >
                             <i className={item.icon}></i>
                             <span>{item.label}</span>
-                            {activeTab === item.id && <div className="active-indicator"></div>}
                         </li>
                     ))}
                 </ul>
             </nav>
-            <div className="sidebar-footer">
-                <p>© 2026 Voley Sistems</p>
+            <div className="nav-footer">
+                <p>{footerText}</p>
             </div>
         </aside>
     );

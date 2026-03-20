@@ -43,19 +43,19 @@ export default function Login() {
                     <h1>Bienvenido de nuevo</h1>
                     <p>Ingresa tus datos para continuar</p>
                 </div>
-                
+
                 <form className="login-form" onSubmit={handleSubmit}>
                     {/* Inline error removed in favor of Swal.fire */}
-                    
+
                     <div className="form-group">
                         <label htmlFor="cedula">Cédula</label>
                         <div className="input-with-icon">
                             <i className="fas fa-id-card"></i>
-                            <input 
-                                type="text" 
-                                id="cedula" 
-                                placeholder="Ej: 12.345.678" 
-                                required 
+                            <input
+                                type="text"
+                                id="cedula"
+                                placeholder="Ej: 12.345.678"
+                                required
                                 value={cedula}
                                 onChange={(e) => setCedula(e.target.value)}
                             />
@@ -66,11 +66,11 @@ export default function Login() {
                         <label htmlFor="clave">Clave</label>
                         <div className="input-with-icon">
                             <i className="fas fa-lock"></i>
-                            <input 
-                                type="password" 
-                                id="clave" 
-                                placeholder="••••••••" 
-                                required 
+                            <input
+                                type="password"
+                                id="clave"
+                                placeholder="••••••••"
+                                required
                                 value={clave}
                                 onChange={(e) => setClave(e.target.value)}
                             />
@@ -96,6 +96,7 @@ export default function Login() {
                     <button onClick={() => navigate('/')} className="btn-back">
                         <i className="fas fa-arrow-left"></i> Volver al Inicio
                     </button>
+                    <p><Link to="/admin/login">Iniciar sesión como administrador</Link></p>
                 </div>
             </div>
         </div>
